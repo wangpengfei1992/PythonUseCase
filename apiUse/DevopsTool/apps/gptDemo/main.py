@@ -18,7 +18,7 @@ start_sequence = "\nA:"
 restart_sequence = "Q: "
 
 # Replace `<your_api_key>` with your actual OpenAI API key
-openai.api_key = "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"
+openai.api_key = "-----"
 prompt = " "
 
 while len(prompt)!=0:
