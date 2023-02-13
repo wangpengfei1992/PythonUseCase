@@ -1,0 +1,100 @@
+# 插件版本, 用于定义插件包的版本, 做版本管理使用
+version: '1.1'
+
+# 插件ID
+id: ACC_TEST_TAST_PLUGIN
+
+# 插件中文名称
+name: PDP-ACC提测任务
+
+# 插件描述
+description: acc流水线创建提测任务 发邮件
+
+# 插件分类
+category: release
+
+
+# 声明插件使用的参数
+variables:
+  - name: packageVersion
+    type: text
+    label: 迭代名称
+    help: 如：2.3.2
+    required: true
+
+  - name: buildEnv
+    type: text
+    label: 提测环境
+    help: Ci、Mp、Beta等
+
+  - name: buildNo
+    type: text
+    label: 提测版本号
+    help: Android、ios填build号,后台填标签
+
+
+  - name: relationVersion
+    type: text
+    label: 后台版本或app版本
+    help: 如：21
+
+  - name: firmwareVersion
+    type: text
+    label: 固件版本
+    help: 1.获取固件最新提测的版本，自测通过后填写。2.如果是显示修复版本，使用线上固件版本
+
+  - name: selftestResultLink
+    type: text
+    label: 自测链接
+    help: 如：https://anker-in.feishu.cn/sheets/shtcnBS0y9fGm1GGp1hSV8ZN5qd
+
+  - name: testDescription
+    type: text
+    label: 提测内容描述
+    help: 包含元素：提测内容+影响范围+其他说明。如：1. 提测内容（新增及修改点）： android12申请蓝牙权限修改 \n 2. 影响范围： 设备连接 \n 3. 其他说明： 无
+
+  - name: plat
+    type: text
+    label: 所属平台
+    help: Android、iOS、PC、Cloud
+
+
+  - name: packageLink
+    type: text
+    label: 制品地址链接
+
+
+  - name: versionPhase
+    type: text
+    label: 版本阶段
+    help: 量产前版本或首个量产版本或量产后维护版本
+
+
+
+  - name: testOwner
+    type: text
+    label: 测试对接人
+    help: 必须为项目组成员。使用姓名，如:pengfei.wang
+    required: true
+
+  - name: testSubmitter
+    type: text
+    label: 提测人
+    help: 必须为项目组成员。使用姓名，如:pengfei.wang
+
+  - name: productName
+    type: text
+    label: 所属项目
+
+
+# 执行入口配置, 声明如何运行插件脚本
+entry:
+
+  # 插件执行依赖
+#  install:
+#    - $QCI_PLUGIN_EXECUTABLE -m pip install -r $QCI_PLUGIN_RUNTIME/requirements.txt --user
+
+  # 插件启动入口
+  # 执行时会把 variables 中的 label 展开，因此完整的命令行是  $PLUGIN_RUNTIME/run.py --name XXXX --greedings XXX， 如不希望展开 label，可详见格式申明中，variables 的 resolve 配置
+  start: $PLUGIN_EXECUTABLE $PLUGIN_RUNTIME/run.py $packageVersion $buildEnv $buildNo $selftestResultLink $testDescription $plat $packageLink $versionPhase $testOwner $testSubmitter $productName $firmwareVersion $relationVersion
+

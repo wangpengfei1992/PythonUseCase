@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Appliances Devops">
+    <meta name="author" content="SZ CI TEAM">
+    <title>新增代码信息</title>
+    <STYLE type=text/css>
+    .body_css{
+        align: center;width: 90%;margin: 30px auto;padding-left: 30px;padding-right:30px;color: #444;font-family: '微软雅黑', '黑体', 'trebuchet MS', 'Lucida sans', Arial;font-size: 16px;
+    }
+    .solid_hr{
+        height:2px;border:none;border-top:1px solid #555555;
+    }
+    .panel {
+      margin-bottom: 20px;
+      background-color: #fff;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+              box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    .panel-body {
+      padding: 15px;
+    }
+    .panel-body {
+      padding: 15px;
+    }
+    .panel-heading {
+      padding: 10px 15px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+    .panel-heading > .dropdown .dropdown-toggle {
+      color: inherit;
+    }
+    .panel-title {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 16px;
+      color: inherit;
+    }
+    .panel-title > a,
+    .panel-title > small,
+    .panel-title > .small,
+    .panel-title > small > a,
+    .panel-title > .small > a {
+      color: inherit;
+    }
+    .panel-footer {
+      padding: 10px 15px;
+      background-color: #f5f5f5;
+      border-top: 1px solid #ddd;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    .panel-info {
+      border-color: #bce8f1;
+    }
+    .panel-info > .panel-heading {
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+    }
+    .panel-info > .panel-heading + .panel-collapse > .panel-body {
+      border-top-color: #bce8f1;
+    }
+    .panel-info > .panel-heading .badge {
+      color: #d9edf7;
+      background-color: #31708f;
+    }
+    .panel-info > .panel-footer + .panel-collapse > .panel-body {
+      border-bottom-color: #bce8f1;
+    }
+    table.bordered {
+        align: left;
+        text-align: left;
+        border-collapse:collapse;
+        border-style:solid;
+        border-radius: 6px;
+        border-color:#ccc;
+        border-width:1px;
+    }
+    table.bordered td, table.bordered th {
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        word-break: break-all;
+    }
+    table.bordered th {
+        font-size: 17px;
+        font-weight:bold;
+        height: 40px;
+        text-align: left;
+        background-color: #dce9f9;
+        border-top: none;
+    }
+    .t_head{
+        font-size: 17px;
+        font-weight:bold;
+        height: 40px;
+        text-align: left;
+        background-color: #dce9f9;
+        border-top: none;
+    }
+    .t_substandard{
+        font-size: 17px;
+        font-weight:bold;
+        height: 40px;
+        text-align: left;
+        color: red;
+    }
+    .t_standard{
+        font-size: 17px;
+        font-weight:bold;
+        height: 40px;
+        text-align: center;
+        color: green;
+    }
+    pre{
+        font-family: Monospaced;
+        font-size: 20px;
+        color: black;
+    }
+    .pre_file_name{
+        color: #0099FF;
+    }
+    .pre_uncovered{
+        color: red;
+    }
+    .text-alarm{
+        color: #FF2D2D;
+        font-family: monospace, monospace;
+        font-size: 1em;
+    }
+    .text-success{
+        color: #3CB371;
+    }
+    .text-title{
+        color: black;
+    }
+    .text-primary{
+        color: royalblue;
+    }
+    .t_text{
+        font-size: 12px;
+        font-weight:bold;
+    }
+    #first_title {
+        font-weight:bold;
+    }
+    .code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: #FF2D2D;
+      background-color: #f9f2f4;
+      border-radius: 4px;
+      font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+    .box{ animation: change 1s  ease-in  infinite ; color:#FF2D2D; font-weight: bold, font-family: Menlo, Monaco, Consolas, "Courier New", monospace;}
+        @keyframes change {
+            0%{ text-shadow: 0 0 4px #f9f2f4}
+            50%{ text-shadow: 0 0 40px #f9f2f4}
+            100%{ text-shadow: 0 0 4px #f9f2f4}
+    }
+
+
+    </STYLE>
+
+
+<script type="text/javascript">
+    var i=0;
+    function myDate(){
+         var date=new Date();
+         var d1=date.toLocaleString();
+         document.getElementById("datetime").innerHTML ="检查时间："+ d1;
+    }
+    setInterval(myDate(),1000);
+</script>
+
+</head>
+
+<body onload = myDate()>
+<h1><B class="text-title">ACC Coding代码仓库规范检查结果</B></h1>
+<h2><B class="text-title"> 以下数据来源于 Pengfei.Wang 检测，请修改不规范仓库，有问题请及时联系！ </B></h2>
+<div id="datetime">检查时间：{{ checkDate }}</div>
+<h3> 检查项目数：{{ project_num }},  检查仓库数：{{ depot_num }},  仓库配置不合规范数：<B style="color: red">{{ error_depot }}</B></h3>
+
+<h2><B class="text-title"> 详情： </B></h2>
+
+<div class="panel-body">
+    
+  <table class="bordered">
+      <tr>
+          <th class="t_head">项目</th>
+          <th class="t_head">仓库</th>
+          <th class="t_head">仓库链接</th>
+          <th class="t_head">不规范配置点</th>
+      </tr>
+      {% for key, value in info.items() %}
+      {% for depot in value %}
+      {% if depot.errors %}
+      <tr>
+          <td><B>{{ key }}</B></td>
+          <td><B>{{ depot.name}}</B></td>
+          <td><a href="{{ depot.web_url }}/git">仓库Coding链接</a></td>
+          <td>
+            <ul>
+              {% for item in depot.errors %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}   
+  </table>
+</div>
+
+
+
+</body>
+
+</html>
